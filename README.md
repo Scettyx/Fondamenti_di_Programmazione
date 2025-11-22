@@ -1,2 +1,2 @@
-# Fondamenti_di_Programmazione
+# Fondamenti di Programmazione
 Python
