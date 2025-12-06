@@ -1,7 +1,7 @@
 # esercizio1: data una quantità di secondi (intero), restituisci QUANTE MINUTI INTERI COMPLETI ci sono
 #             Usa solo operazioni aritmetiche viste (//, %, *, +, -) e NESSUNA funzione pronta.
 def esercizio1(secondi):
-    pass  # TODO: sostituisci pass con il tuo codice
+    return secondi % 60
 
 print(esercizio1(0))        # caso_base: 0 secondi
 print(esercizio1(59))       # caso_estremo1: meno di 1 minuto
@@ -12,7 +12,9 @@ print(esercizio1(3605))     # caso_estremo2: più di un'ora
 #             restituisci QUANTO PAGA OGNI PERSONA come float.
 #             Usa la divisione normale / e fai attenzione ai casi limite (es. 0 persone).
 def esercizio2(spesa_totale, numero_persone):
-    pass  # TODO: sostituisci pass con il tuo codice
+    if numero_persone == 0:
+        return None
+    return f"{spesa_totale / numero_persone: .2f}"
 
 print(esercizio2(100.0, 4))   # caso_base
 print(esercizio2(0.0, 3))     # caso_estremo1: spesa zero
@@ -23,8 +25,11 @@ print(esercizio2(50.0, 0))    # caso_estremo2: persone zero (decidi tu come gest
 #             restituisci base**esponente SENZA usare l'operatore **,
 #             ma solo moltiplicazioni ripetute e un ciclo while o for (li userai dopo, ora pensa solo alla logica).
 def esercizio3(base, esponente):
-    pass  # TODO: sostituisci pass con il tuo codice
-
+    if esponente == 0:
+        return 1
+    for _ in range(esponente - 1):
+        base += base
+    return base
 print(esercizio3(2, 0))     # caso_base: qualunque numero alla 0
 print(esercizio3(2, 10))    # caso_estremo1: potenza grande
 print(esercizio3(0, 5))     # caso_estremo2: base zero, esponente positivo
