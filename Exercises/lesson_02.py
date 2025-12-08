@@ -4,7 +4,7 @@
 def esercizio1(testo):
     # TODO: usa len(testo) e indicizzazione/slicing per costruire il risultato
     # ricordati che le stringhe sono immutabili: crea una NUOVA stringa
-    pass
+    return testo if len(testo) <= 1 else testo[0] + testo[-1]
 
 
 # test esercizio1
@@ -19,7 +19,7 @@ print(esercizio1("A"))          # caso estremo: un solo carattere
 # Usa slicing con step e/o concatenazione.
 def esercizio2(testo):
     # TODO: usa testo[::2] e testo[1::2] (o logica equivalente) e concatenali
-    pass
+    return testo[::2] + testo[1::2]
 
 
 # test esercizio2
@@ -35,7 +35,10 @@ print(esercizio2(""))           # caso estremo: stringa vuota
 # Se la conversione fallisce (ValueError), restituisci la stringa "ERRORE".
 def esercizio3():
     # TODO: usa input(), int(), try/except ValueError e operatori %
-    pass
+    try:
+        return "PARI" if int(input()) % 2 == 0 else "DISPARI"
+    except ValueError:
+        return "ERRORE"
 
 
 # test esercizio3
