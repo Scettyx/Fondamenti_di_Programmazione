@@ -29,6 +29,7 @@ def esercizio3(base, esponente):
     for _ in range(esponente - 1):
         risultato *= base
     return risultato
+
 print(esercizio3(2, 0))     # caso_base: qualunque numero alla 0
 print(esercizio3(2, 10))    # caso_estremo1: potenza grande
 print(esercizio3(0, 5))     # caso_estremo2: base zero, esponente positivo

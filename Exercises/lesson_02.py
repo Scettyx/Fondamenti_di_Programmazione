@@ -6,7 +6,6 @@ def esercizio1(testo):
     # ricordati che le stringhe sono immutabili: crea una NUOVA stringa
     return testo if len(testo) <= 1 else testo[0] + testo[-1]
 
-
 # test esercizio1
 print(esercizio1("Python"))     # caso base
 print(esercizio1(""))           # caso estremo: stringa vuota
@@ -20,7 +19,6 @@ print(esercizio1("A"))          # caso estremo: un solo carattere
 def esercizio2(testo):
     # TODO: usa testo[::2] e testo[1::2] (o logica equivalente) e concatenali
     return testo[::2] + testo[1::2]
-
 
 # test esercizio2
 print(esercizio2("abcdef"))     # caso base
@@ -39,7 +37,6 @@ def esercizio3():
         return "PARI" if int(input()) % 2 == 0 else "DISPARI"
     except ValueError:
         return "ERRORE"
-
 
 # test esercizio3
 print(esercizio3())  # caso base: inserisci un intero normale (es. 10)
