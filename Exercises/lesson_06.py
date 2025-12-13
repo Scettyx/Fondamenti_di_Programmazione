@@ -1,43 +1,40 @@
-# esercizio1
-# Scrivi una funzione esercizio1() che:
-# - chiede all'utente (con input) un intero tra 1 e 100
-# - continua a richiederlo finché l'utente non inserisce un valore valido
-#   (usa try/except per gestire errori di conversione)
-# - restituisce l'intero valido letto
-def esercizio1():
-    pass
+# esercizio1: scrivi una funzione che prende una lista di interi
+# e RITORNA una NUOVA lista dove tutti i numeri negativi sono stati
+# sostituiti con 0, senza modificare la lista originale (nessun effetto collaterale).
+def esercizio1(lista_numeri):
+    return [0 if n < 0 else n for n in lista_numeri]
 
-print("esercizio1 - caso_base:", esercizio1())        # prova normale
-print("esercizio1 - caso_estremo1:", esercizio1())    # prova con input sbagliati prima di uno valido
-print("esercizio1 - caso_estremo2:", esercizio1())    # prova con 1 o 100
+print(esercizio1([1, -2, 3, -4, 0]))
+print(esercizio1([]))
+print(esercizio1([-1, -2, -3]))
 
 
-# esercizio2
-# Scrivi una funzione esercizio2(parole) che:
-# - riceve una lista di stringhe 'parole'
-# - restituisce una NUOVA lista ordinata secondo questi criteri:
-#   1) per lunghezza crescente
-#   2) a parità di lunghezza, ordine alfabetico ignorando maiuscole/minuscole
-#   3) a parità di tutto il resto, mantieni l'ordine relativo originale (stabilità)
-# Suggerimento: usa sorted con parametro key e magari enumerate.
+# esercizio2: scrivi una funzione che prende una sequenza di parole (lista o tupla)
+# e RITORNA una nuova lista di parole ordinate:
+# 1) per lunghezza crescente
+# 2) a parità di lunghezza, in ordine alfabetico ignorando maiuscole/minuscole.
 def esercizio2(parole):
-    pass
+    return sorted(parole, key = lambda p: (len(p), p.lower()))
 
-print("esercizio2 - caso_base:", esercizio2(["uno", "due", "tre", "quattro", "cinque", "sei", "sette"]))
-print("esercizio2 - caso_estremo1:", esercizio2([]))
-print("esercizio2 - caso_estremo2:", esercizio2(["Aa", "aA", "aa", "AA"]))
+print(esercizio2(["Python", "c", "Java", "go", "Rust"]))
+print(esercizio2([]))
+print(esercizio2(["AA", "a", "Bb", "bB", "bb"]))
 
 
-# esercizio3
-# Scrivi una funzione esercizio3(*valori, minimo=None, massimo=None) che:
-# - accetta un numero variabile di argomenti numerici (packing)
-# - se minimo e/o massimo sono None, NON applica quel limite
-# - restituisce una NUOVA lista con solo i valori compresi tra minimo e massimo (estremi inclusi)
-#   es. esercizio3(1, 5, 10, minimo=3, massimo=8) -> [5]
-# - gestisci il caso senza valori (ritorna lista vuota)
-def esercizio3(*valori, minimo=None, massimo=None):
-    pass
+# esercizio3: scrivi una funzione che chiede all’utente da tastiera
+# un numero tra 1 e 100 compresi, accettando anche input float (es. "3.5"),
+# ripetendo la richiesta finché l’utente non inserisce un valore valido,
+# e RITORNA l’intero corrispondente arrotondato per difetto (int(float(...))).
+def esercizio3():
+    while True:
+        try:
+            inp = input("Inserisci un numero tra 1 e 100 compresi: ")
+            numero = float(inp)
+            if 1 <= numero <= 100:
+                return int(numero)
+            else:
+                print("Il numero deve essere compreso tra 1 e 100, riprova...")
+        except ValueError:
+            print("Input non valido, inserisci un NUMERO")
 
-print("esercizio3 - caso_base:", esercizio3(1, 5, 10, minimo=3, massimo=8))
-print("esercizio3 - caso_estremo1:", esercizio3())
-print("esercizio3 - caso_estremo2:", esercizio3(-10, 0, 10, minimo=None, massimo=0))
+print(esercizio3())
