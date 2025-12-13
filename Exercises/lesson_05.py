@@ -3,8 +3,7 @@
 # Se la lista è vuota, ritorna (0.0, None, None).
 def esercizio1(numeri):
     # TODO: implementa qui usando somma, len, min, max e return multiplo
-    pass
-
+    return (sum(numeri)/len(numeri), min(numeri), max(numeri)) if numeri else (0.0, None, None)
 
 # Test per esercizio1
 print(esercizio1([1, 2, 3, 4]))       # caso base
@@ -17,8 +16,12 @@ print(esercizio1([-5, 0, 10, 7]))     # caso estremo2: numeri negativi e positiv
 # e ritorna la cifra (come carattere) che sta in posizione N (contando da 1).
 def esercizio2(N):
     # TODO: implementa usando un while o for, concatenazione di stringhe e indicizzazione
-    pass
-
+    n = 0
+    lista = ""
+    while len(lista) < N:
+        n += 1
+        lista += str(n)
+    return lista[N - 1]
 
 # Test per esercizio2
 print(esercizio2(1))      # caso base: deve dare '1'
@@ -36,8 +39,19 @@ def esercizio3(N):
     # 1) definisci dentro (o fuori) una funzione num_cifre(x)
     # 2) scorri i numeri da 1 in avanti, sottraendo num_cifre(i) finché serve
     # 3) quando trovi il numero giusto, estrai la cifra corrispondente
-    pass
+    pos = 0
+    i = 1
+    while True:
+        cifre = num_cifre(i)
+        if pos + cifre >= N:
+            s = str(i)
+            idx = N - pos - 1
+            return s[idx]
+        pos += cifre
+        i += 1
 
+def num_cifre(x):
+    return len(str(x))
 
 # Test per esercizio3
 print(esercizio3(1))      # caso base: deve dare '1'
