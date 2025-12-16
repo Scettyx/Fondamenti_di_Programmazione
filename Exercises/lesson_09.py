@@ -2,7 +2,7 @@
 # usa zip per trasporre la "tabella" (scambiare righe e colonne)
 # e restituisci la nuova lista di liste.
 def esercizio1(tabella: list[list[int]]) -> list[list[int]]:
-    pass
+    return [list(colonna) for colonna in zip(*tabella)]
 
 
 print(esercizio1([[1, 2, 3],
@@ -21,7 +21,7 @@ print(esercizio1([[10], [20], [30]]))  # caso estremo2 (una sola colonna)
 # - "zero" se è 0
 # Usa una espressione condizionale (if ... else) dentro una list comprehension.
 def esercizio2(valori: list[int]) -> list[str]:
-    pass
+    return ["positivo" if n > 0 else "zero" if n == 0 else "negativo" for n in valori]
 
 
 print(esercizio2([1, -2, 0, 5]))       # caso base
@@ -35,7 +35,9 @@ print(esercizio2([0, 0, 0]))           # caso estremo2 (solo zeri)
 # - restituisce lo studente con il voto massimo.
 # Aggiungi annotazioni di tipo sensate (lista, dict, int, str, ecc.).
 def esercizio3(studenti: list[dict[str, int | str]]) -> dict[str, int | str]:
-    pass
+    def chiave(studente):
+        return studente["voto"]
+    return max(studenti, key = chiave)
 
 
 print(esercizio3([{"nome": "Anna", "voto": 28},
