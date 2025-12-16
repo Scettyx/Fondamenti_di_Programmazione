@@ -4,7 +4,6 @@
 def esercizio1(tabella: list[list[int]]) -> list[list[int]]:
     return [list(colonna) for colonna in zip(*tabella)]
 
-
 print(esercizio1([[1, 2, 3],
                   [4, 5, 6],
                   [7, 8, 9]]))          # caso base
@@ -23,7 +22,6 @@ print(esercizio1([[10], [20], [30]]))  # caso estremo2 (una sola colonna)
 def esercizio2(valori: list[int]) -> list[str]:
     return ["positivo" if n > 0 else "zero" if n == 0 else "negativo" for n in valori]
 
-
 print(esercizio2([1, -2, 0, 5]))       # caso base
 print(esercizio2([]))                  # caso estremo1 (lista vuota)
 print(esercizio2([0, 0, 0]))           # caso estremo2 (solo zeri)
@@ -39,13 +37,10 @@ def esercizio3(studenti: list[dict[str, int | str]]) -> dict[str, int | str]:
         return studente["voto"]
     return max(studenti, key = chiave)
 
-
 print(esercizio3([{"nome": "Anna", "voto": 28},
                   {"nome": "Luca", "voto": 30},
                   {"nome": "Marta", "voto": 25}]))  # caso base
-
 print(esercizio3([{"nome": "SoloUno", "voto": 18}]))  # caso estremo1 (un solo elemento)
-
 print(esercizio3([{"nome": "A", "voto": 20},
                   {"nome": "B", "voto": 20},
                   {"nome": "C", "voto": 19}]))        # caso estremo2 (più max uguali)
