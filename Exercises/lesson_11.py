@@ -13,7 +13,6 @@ def esercizio1(nome_file: str, encoding: str = "utf-8") -> List[str]:
     # TODO: implementa i passi descritti nel commento sopra
     pass
 
-
 print(esercizio1("testo_piccolo.txt")[:10])          # caso base: file di poche righe
 print(len(esercizio1("alice.txt")))                  # caso estremo 1: file lungo (libro)
 print(esercizio1("vuoto.txt"))                       # caso estremo 2: file vuoto -> lista vuota attesa
@@ -29,7 +28,6 @@ def esercizio2(nome_file_json: str) -> Dict[str, int]:
     # TODO: leggi il file JSON, scorri i contatti e conta le occorrenze di ciascun "nome"
     pass
 
-
 print(esercizio2("agenda_piccola.json"))             # caso base: pochi contatti
 print(esercizio2("agenda_grande.json"))              # caso estremo 1: molti contatti ripetuti
 print(esercizio2("agenda_vuota.json"))               # caso estremo 2: lista vuota -> dict vuoto atteso
@@ -44,7 +42,6 @@ print(esercizio2("agenda_vuota.json"))               # caso estremo 2: lista vuo
 def esercizio3(url: str) -> Dict[str, int]:
     # TODO: fai la richiesta HTTP con requests, estrai items, poi conta i valori di "type"
     pass
-
 
 print(esercizio3("https://api.esempio.it/risorse"))  # caso base: pochi item con type diversi
 print(esercizio3("https://api.esempio.it/moltissimi"))  # caso estremo 1: molti item

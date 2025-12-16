@@ -1,0 +1,3 @@
+Ciao, mondo!
+Questo è un piccolo testo di prova.
+Fine.
