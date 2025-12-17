@@ -40,9 +40,15 @@ Esempio: se a_dict = {'a':['a','barbagianni','c'], 'b':['a','bifolco'], 'c':['a'
   e' inoltre rimossa la chiave 'b' perche' la lista ['a','bifolc0'] contiene 
   'bifolco' che contiene la word 'b'.
 '''
-def func1(a_dict : dict[str,list[str]], word : str) -> int :
+def func1(a_dict : dict[str,list[str]], word : str) -> int:
     # scrivi qui il tuo codice
-    pass
+    removed = 0
+    for k in list(a_dict.keys()):
+        values = a_dict[k]
+        if any(word in s for s in values):
+            del a_dict[k]
+            removed += 1
+    return removed
 
 # a = {'a':['a','barbagianni','c'], 'b':['a','bifolco'], 'c':['a','c']}
 # print(func1(a, 'b')) # 2
@@ -78,7 +84,13 @@ e gli elementi a distanza 0 dall'inizio e dalla fine sono "b" e "a".
 
 def func2(D : dict[int, list[str]]) -> list[str]:
     # scrivi qui il tuo codice
-    pass
+    W: list[tuple[str, str]] = []
+    for k, L in D.items():
+        L_sorted = sorted(L, reverse = True)
+        first = L_sorted[k]
+        last = L_sorted[-(k + 1)]
+        W.append((first, last))
+    return W
 
 # D = {4: ["c", "h", "f", "g", "e"], 2: ["a", "z", "b", "w"], 0: ["a", "b", "a"]}
 # print(func2(D)) # [("c","h"), ("b","w"), ("b","a")]
@@ -108,7 +120,12 @@ Per convertire caratteri in codici ascii si puo' usare la funzione ord().
 
 def func3(strList : list[str]) -> list[int]:
     # scrivi qui il tuo codice
-    pass
+    pairs = []
+    for s in strList:
+        total = sum(ord(ch) for ch in s)
+        pairs.append((s, total))
+    pairs.sort(key = lambda x: (-len(x[0]), x[0]))
+    return [total for _, total in pairs]
 
 # strList = ["monkey", "cat", "panda", "boy", "alligator"]
 # print(func3(strList)) # [959, 659, 516, 330, 312]
@@ -141,7 +158,20 @@ Esempio: se string_list1=['shop', 'park', 'elichopter', 'cat', 'elephant'] e
 
 def func4(string_list1 : list[str], string_list2 : list[str]) -> list[str]:
     # INSERT HERE YOUR CODE
-    pass
+    result_set = set()
+    for s1 in string_list1:
+        for s2 in string_list2:
+            if s2 in s1:
+                result_set.add(s1)
+                break
+    for s2 in string_list2:
+        for s1 in string_list1:
+            if s1 in s2:
+                result_set.add(s2)
+                break
+    result = list(result_set)
+    result.sort(key = lambda s: (-len(s), s))
+    return result
 
 
 # string_list1=['shop', 'park', 'elichopter', 'cat', 'elephant']
@@ -180,7 +210,17 @@ e il baricentro risultante dei 3 punti è: (0.667, 0.0)
 from math import sqrt
 def func5(points : list[tuple[int,int]]) -> tuple[float,float]:
     # scrivi qui il tuo codice
-    pass
+    with_dist = []
+    for (x, y) in points:
+        d = sqrt(x * x + y * y)
+        with_dist.append((d, x, y))
+    with_dist.sort(reverse = True, key = lambda t: t[0])
+    top3 = with_dist[:3]
+    sum_x = sum(x for _, x, _ in top3)
+    sum_y = sum(y for _, _, y in top3)
+    X = round(sum_x / 3.0, 3)
+    Y = round(sum_y / 3.0, 3)
+    return (X, Y)
 
 # points = [(2, 2), (-1, 1), (3, 0), (-3, -2), (2, -1)],
 # print(func5(points)) # (0.667, 0.0)
@@ -204,7 +244,17 @@ expected   = {'P': 6, 'L': 8, 'C': 6, 'S': 10}
 '''
 
 def func6(text : str) -> dict[str,int]:
-    pass
+    words = text.split()
+    words_up = [w.upper for w in words]
+    initials = set(w[0] for w in words_up if w)
+    result: dict[str, int] = {}
+    for init in initials:
+        count = 0
+        for w in words_up:
+            if init not in w:
+                count += 1
+        result[init] = count
+    return result
 
 
 #text = 'sOtto lA panca La caPra Canta Sopra LA Panca La CaPra crepa'
