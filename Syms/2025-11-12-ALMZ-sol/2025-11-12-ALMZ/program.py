@@ -50,7 +50,25 @@ Es: se dai due file dic1 e dic2 sono generati i dizionari
 
 """
 def func1 (dict1, dict2):
-    pass
+    def build_dict(path):
+        d = {}
+        with open(path, encoding = "utf8") as f:
+            for line in f:
+                parts = line.split()
+                if len(parts) == 2:
+                    k, v = parts
+                    d[k] = v
+        return d
+    d1 = build_dict(dict1)
+    d2 = build_dict(dict2)
+    result = {}
+    common_keys = set(d1.keys() & d2.keys())
+    for k in common_keys:
+        v1 = d1[k]
+        v2 = d2[k]
+        a, b = sorted([v1, v2])
+        result[k] = f"{a}-{b}"
+    return result
     # completa il codice della funzione
 
 
@@ -81,7 +99,18 @@ Si apra 'func2/input_1.txt per vedere l'input e
 """
 
 def func2(input_file, output_file):
-    pass
+    total = 0
+    with open(input_file, encoding = "utf8") as fin, \
+        open(output_file, "w", encoding = "utf8") as fout:
+        for line in fin:
+            line = line.strip()
+            if not line:
+                continue
+            parts = [p.strip() for p in line.split(',')]
+            nums = [int(p) for p in parts]
+            total += len(nums)
+            fout.write(str(nums) + "\n")
+    return total
     # completa il codice della funzione
 
 
@@ -110,7 +139,17 @@ Esempio: func3('func3/in_01.txt', 'func3/out_01.txt', 5, 'asd')
 """
 
 def func3(file_in : str, file_out: str, length:int, chars:str) -> list[str]:
-    pass
+    chars_set = set(chars)
+    words = []
+    with open(file_in, encoding = "utf8") as fin:
+        for line in fin:
+            for w in line.split():
+                if len(w) >= length and any(c in w for c in chars_set):
+                    words.append(w)
+    words.sort(key = lambda w: (-len(w), w))
+    with open(file_out, "w", encoding = "utf8") as fout:
+        fout.write(" ".join(words))
+    return words
     # completa il codice della funzione
 
 
@@ -141,7 +180,26 @@ e tornare il valore 5
 '''
 
 def func4(textfile_in, textfile_out):
-    pass
+    with open(textfile_in, encoding = "utf8") as fin:
+        content = fin.read().strip()
+    if not content:
+        with open(textfile_out, "w", encoding = "utf8") as fout:
+            fout.write("")
+        return 0
+    tokens = content.split()
+    nums = []
+    for t in tokens:
+        digit_count = sum(ch.isdigit() for ch in t)
+        if "." in t:
+            value = float(t)
+        else:
+            value = int(t)
+        nums.append((t, digit_count, value))
+    nums.sort(key = lambda x: (-x[1], x[2]))
+    ordered_strings = [t for (t, _, _) in nums]
+    with open(textfile_out, "w", encoding = "utf8") as fout:
+        fout.write(", ".join(ordered_strings))
+    return len(ordered_strings)
     # completa il codice della funzione
 
 
@@ -173,7 +231,25 @@ come lista di liste
  [ 9, 5, 1]]
 '''
 def func5(input_filename):
-    pass
+    matrix = []
+    with open(input_filename, encoding = "utf8") as fin:
+        for line in fin:
+            line = line.strip()
+            if not line:
+                continue
+            row = [int(x) for x in line.split()]
+            matrix.append(row)
+    if not matrix:
+        return []
+    n = len(matrix)
+    m = len(matrix[0])
+    result = []
+    for i in range(m):
+        new_row = []
+        for j in range(n):
+            new_row.append(matrix[n - 1 - j][m - 1 - i])
+        result.append(new_row)
+    return result
     # completa il codice della funzione
 
 
